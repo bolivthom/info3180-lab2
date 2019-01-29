@@ -25,10 +25,11 @@ def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
 
-@app.route('/profile')
+"""Profile Function"""    
+@app.route("/profile")
 def profile():
-    """Render website's home page."""
-    return render_template('profile.html')
+    date_joined= format_date_joined()
+    return render_template('profile.html', formatted_date = date_joined)
     
 ###
 # The functions below should be applicable to all Flask apps.
@@ -36,9 +37,7 @@ def profile():
 
 def format_date_joined():
     date_joined = datetime.date(2019, 2, 3)
-    return "Joined "  + date_joined.strftime("%B, %Y") 
-
-date = format_date_joined()
+    return "Joined " + date_joined.strftime("%B, %Y")
 
 @app.route('/<file_name>.txt')
 def send_text_file(file_name):
